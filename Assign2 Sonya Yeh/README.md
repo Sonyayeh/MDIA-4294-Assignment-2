@@ -1,1 +1,2 @@
+<<<<<<< HEAD
 Hello Airrick! Thank you so much for the extension...I just had too much going on lately, emotionally, physically and mentally haha. But I made the first assignment, which is a Manga API, and made it into the second assignment. Please don't mind the amount of images there are in the public folder, as it represents the amount of tries I did when I was constructing this assignment. Since there is no node modules and I basically used the same UI you provided for class activity, you just need to npm install for both API and Web! Thank you again!
