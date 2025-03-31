@@ -119,6 +119,8 @@ function UpdateMangasModalContent({ onClose, onMangasUpdated, mangas }) {
   // big chunk again:
   // basically this is the edit section, the UI that pops up when you click edit/update
   // you can edit the title, description, author, etc, and they will be updated to the API/Server
+  // there are a lot of features, such as edit the author, image, or descriptoin
+  // everything will be updated after being saved, and the data will be posted to the server/API
   return (
     <div className={m["modal-container"]}>
       <div className={`${m["modal"]} ${g["card"]}`} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>

@@ -4,7 +4,7 @@ const multer = require('multer');
 // path is a core Node module for working with file paths and is user here to get the file extension of an uploaded file, since we are renaming the file
 const path = require('path');
 
-// Configure multer for file uploads so we can store items later on 
+// Configure multer for file uploads so we can store items later on
 const storage = multer.diskStorage({
   // Set the destination for uploaded files
   destination: (req, file, cb) => {
