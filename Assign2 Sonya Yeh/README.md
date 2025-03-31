@@ -1,7 +1,1 @@
-## MDIA 4294 - Express/React - Lab App
-- Week 7: Connecting Express, React, and MySQL (MAMP)
-- Week 8: CRUD - Create
-- Week 9: CRUD - Update
-- Week 10: CRUD - GET Parameters & DELETE
-- Week 11: Sessions, Cookies & Auth w/ express-basic-auth
-- Week 12: Deployment
+Hello Airrick! Thank you so much for the extension...I just had too much going on lately, emotionally, physically and mentally haha. But I made the first assignment, which is a Manga API, and made it into the second assignment. Please don't mind the amount of images there are in the public folder, as it represents the amount of tries I did when I was constructing this assignment. Since there is no node modules and I basically used the same UI you provided for class activity, you just need to npm install for both API and Web! Thank you again!
