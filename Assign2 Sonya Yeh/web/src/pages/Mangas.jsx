@@ -20,12 +20,14 @@ function Mangas() {
 
   // Handler for when a manga is added
   const handleMangasAdded = (newManga) => {
-    setMangas((prevMangas) => [...prevMangas, newManga]); // Add new manga to the list
+    // Add new manga to the list
+    setMangas((prevMangas) => [...prevMangas, newManga]); 
   };
 
   return (
     <div>
-      <AddMangasModal onMangasAdded={handleMangasAdded} /> {/* Pass callback to modal */}
+      {/* Pass callback to modal */}
+      <AddMangasModal onMangasAdded={handleMangasAdded} /> 
       <div className={g['grid-container']}>
         {mangas.length > 0 ? (
           mangas.map((manga) => (
