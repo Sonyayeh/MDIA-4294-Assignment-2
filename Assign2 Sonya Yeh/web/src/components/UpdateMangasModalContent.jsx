@@ -160,6 +160,10 @@ function UpdateMangasModalContent({ onClose, onMangasUpdated, mangas }) {
             </button>
           </form>
         </div>
+        {/* this is to align the image to the right side of the container and also provide some padding to make sure there are enough space between each content
+        
+        I also made the width smaller so people can see better on screen and not have the image be too big that it stretches the container!
+        */}
         <div style={{ marginLeft: "20px" }}>
           <label>Current Image</label>
           <img src={`http://localhost:3000/images/${mangas.imageUrl}`} alt="Manga Cover" style={{ maxWidth: "200px", maxHeight: "200px", objectFit: "cover" }} />

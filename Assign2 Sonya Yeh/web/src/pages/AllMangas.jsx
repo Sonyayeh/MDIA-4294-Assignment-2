@@ -1,3 +1,5 @@
+// this shows the all mangas that are displayed on the server/API
+// this also includes every feature from the component, like add, update, delete and manage filter
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AddMangasModal from '../components/AddMangasModal';
@@ -7,6 +9,12 @@ import MangasFilters from "../components/MangasFilter";
 import g from '../global.module.css';
 import at from './Allmangas.module.css';
 
+// because this is too long, I'm just going to do a summary:
+// basically, this is the landing page, it displays all of the mangas on the server with features such as view, delete and update manga information. It also includes features such as viewing information about each manga and filter based on their genres. 
+
+// each feature, the add, update, delete manga and manage filter, are directly imported from the other component pages, and will become accessible for every mangas. Every single time when users view about the manga or do anything to it, the system will fetch the information of individual manga data from the server/API, and then display the information onto the page when buttons of the actions were clicked. 
+
+// each mangas and information about the mangas and authors, will be fetched from the localhost:3000 link in every url line mentioned!
 function AllMangas() {
     const [mangas, setMangas] = useState([]);
     const [modalOpen, setModalOpen] = useState(null);
