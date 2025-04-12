@@ -1,0 +1,8 @@
+.manga-title {
+    margin-bottom: 8px;
+}
+
+.manga-actions {
+    display: flex;
+    gap: 8px;
+}
