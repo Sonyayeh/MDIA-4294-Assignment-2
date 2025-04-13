@@ -1,5 +1,3 @@
-// this shows the all mangas that are displayed on the server/API
-// this also includes every feature from the component, like add, update, delete and manage filter
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AddMangasModal from '../components/AddMangasModal';
@@ -9,12 +7,6 @@ import MangasFilters from "../components/MangasFilter";
 import g from '../global.module.css';
 import at from './Allmangas.module.css';
 
-// because this is too long, I'm just going to do a summary:
-// basically, this is the landing page, it displays all of the mangas on the server with features such as view, delete and update manga information. It also includes features such as viewing information about each manga and filter based on their genres. 
-
-// each feature, the add, update, delete manga and manage filter, are directly imported from the other component pages, and will become accessible for every mangas. Every single time when users view about the manga or do anything to it, the system will fetch the information of individual manga data from the server/API, and then display the information onto the page when buttons of the actions were clicked. 
-
-// each mangas and information about the mangas and authors, will be fetched from the localhost:3000 link in every url line mentioned!
 function AllMangas() {
     const [mangas, setMangas] = useState([]);
     const [modalOpen, setModalOpen] = useState(null);
@@ -42,6 +34,8 @@ function AllMangas() {
 
     const handleUpdatedMangas = (updatedMangas) => {
         setMangas(updatedMangas);
+        setModalOpen(null);  // Close modal after update
+        setModalOpenType(null);  // Reset modal type
     };
 
     useEffect(() => {
@@ -49,11 +43,11 @@ function AllMangas() {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="loading-spinner">Loading...</div>;
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="error-message">Oops! Something went wrong. Please try again later.</div>;
     }
 
     return (
@@ -62,8 +56,7 @@ function AllMangas() {
             <div className={g['grid-container']}>
                 <div className={g['col-3']}>
                     <h3>Filters</h3>
-                    {/* Make sure the correct function is passed */}
-                    <MangasFilters updatemangas={handleUpdatedMangas} /> 
+                    <MangasFilters updateMangas={handleUpdatedMangas} />
                 </div>
                 <div className={g['col-9']}>
                     <div className={`${g['flex']} ${g['space-between']} ${g['items-center']}`}>
@@ -109,7 +102,7 @@ function AllMangas() {
                                                     setModalOpen(mangasItem.id);
                                                     setModalOpenType("update");
                                                 }}
-                                                className={`${g['button']} ${g['small']}`}  // Add the same styles as View
+                                                className={`${g['button']} ${g['small']}`} 
                                             >
                                                 Update
                                             </button>
@@ -119,7 +112,7 @@ function AllMangas() {
                                                     setModalOpen(mangasItem.id);
                                                     setModalOpenType("delete");
                                                 }}
-                                                className={`${g['button']} ${g['small']}`}  // Add the same styles as View
+                                                className={`${g['button']} ${g['small']}`} 
                                             >
                                                 Delete
                                             </button>

@@ -22,36 +22,29 @@ import a from './App.module.css'; // Assuming you have some custom styling
 
 function App() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Set up navigate for routing
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Passed into the header to log out
+  // Handle logout and redirect
   const handleLogout = () => {
-    
     localStorage.removeItem("jwt-token");
     setIsAuthenticated(false);
-    
-    navigate("/sign-in");
-
+    navigate("/sign-in"); // Navigate to sign-in page after logout
   }
 
-  // Passed into the header to Sign-in page to login
+  // Handle login and redirect
   const handleLogin = () => {
-
     setIsAuthenticated(true);
-    navigate("/manga");
-
+    navigate("/manga"); // Redirect to the manga page (or home page)
   }
 
-  // When the page loads, check if the user has a token
+  // Check if the user is already authenticated
   useEffect(() => {
     const jwtToken = localStorage.getItem("jwt-token");
-
-    if(jwtToken) {
+    if (jwtToken) {
       setIsAuthenticated(true);
     }
-
   }, []);
 
   return (
@@ -60,28 +53,27 @@ function App() {
         <Header handleLogout={handleLogout} isAuthenticated={isAuthenticated}/> {/* Include the header */}
         
         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-in" 
-          element={<SignIn handleLogin={handleLogin} />} />
+          <Route path="/" element={<Home />} /> {/* Home page route */}
+          <Route path="/sign-up" element={<SignUp />} /> {/* Sign up page */}
+          <Route path="/sign-in" 
+            element={<SignIn handleLogin={handleLogin} />} /> {/* Sign in page */}
+          
           {/* Define Routes for each page */}
-          <Route path="/" element={<AllMangas />} /> {/* Home page route */}
+          <Route path="/all-mangas" element={<AllMangas />} /> {/* All mangas page route */}
+          
+          {/* Protected route to redirect to /all-mangas if logged in */}
           <Route 
             path="/manga" 
             element={
-              <>
-                <Navigate to="/" /> 
-                <ProtectedAllMangas />
-              </>} /> {/* Redirect to home if user hits '/manga' */}
-              <Route 
-                path="/mangas/:id" 
-                element={
-                  <>
-                    <MangaDetail /> 
-                    <ProtectedManga />
-                  </>
-                } 
-              /> {/* Manga details page route */}
+              isAuthenticated ? <ProtectedAllMangas /> : <Navigate to="/sign-in" /> 
+            } 
+          /> {/* Redirect to /sign-in if not authenticated */}
+          
+          {/* Manga details page route */}
+          <Route 
+            path="/mangas/:id" 
+            element={<MangaDetail />} 
+          />
         </Routes>
 
         <Footer /> {/* Footer component */}
