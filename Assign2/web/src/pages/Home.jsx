@@ -7,8 +7,8 @@ function Home() {
         <main style={{backgroundImage: `url(${bannerImage})`}} className={`${g['container']} ${g["full-width"]} ${g['banner']}`}>
             <div className={`${g['grid-container']} ${g["banner__content"]} ${g["text-center"]}`}>
                 <div className={g['col-12']}>
-                    <h1 className={g['h1']}>Welcome, collector</h1>
-                    <h3>Sign up and share your library</h3>
+                    <h1 className={g['h1']}>Ello, Fellow Manga Lover</h1>
+                    <h3>Sign up for all the free manga you can ever ask for</h3>
                     <div className={g["banner__buttons"]}>
                         {/* added the sign in and sign up buttons for users to have access to the all manga page */}
                         <Link to="/sign-up" className={`${g['button']} ${g["success"]}`}>Sign Up</Link>
