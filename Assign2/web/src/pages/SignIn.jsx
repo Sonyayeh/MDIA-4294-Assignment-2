@@ -40,7 +40,7 @@ function SignIn( { handleLogin } ) {
         <main style={{ backgroundImage: `url(${bannerImage})` }} className={`${g['container']} ${g["full-width"]} ${g['banner']}`}>
             <div className={`${g['grid-container']} ${g["banner__content"]}`}>
                 <div className={g['col-12']}>
-                    <div className={`${g['card']} ${g['card--w-padding']}`}>
+                    <div>
                         <h1 className={g['h1']}>Sign In</h1>
                         <form className={`${g['form-group']} ${g["form--full"]}`} onSubmit={handleSubmit}>
                             <div>

@@ -122,12 +122,10 @@ img {
 .button.delete { background-color: #f00; color: #fff; }
 .button.warning { background-color: #ff0; color: #000; }
 .button.success { background-color: #0f0; color: #000; }
+.button.home { background-color: rgb(0, 221, 255); color: #000; }
 /* Card */
 
-.card {
-    border: 1px solid #000;
-    box-shadow: 3px 3px 0px 0px black;
-}
+
 
 .card-content {
     padding: 1rem;

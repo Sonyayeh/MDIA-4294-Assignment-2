@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 
 import authRequired from './authRequired';
 
+import Home from './pages/Home'; // Home page
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import AllMangas from './pages/AllMangas'; // All mangas page
@@ -59,6 +60,7 @@ function App() {
         <Header handleLogout={handleLogout} isAuthenticated={isAuthenticated}/> {/* Include the header */}
         
         <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" 
           element={<SignIn handleLogin={handleLogin} />} />

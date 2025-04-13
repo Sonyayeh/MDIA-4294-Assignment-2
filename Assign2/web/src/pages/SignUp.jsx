@@ -43,9 +43,9 @@ function SignUp() {
 
     return (
         <main style={{backgroundImage: `url(${bannerImage})`}} className={`${g['container']} ${g["full-width"]} ${g['banner']}`}>
-            <div className={`${g['grid-container']} ${g["banner__content"]}`}>
+            <div className={`${g["banner__content"]}`}>
                 <div className={g['col-12']}>
-                    <div className={`${g['card']} ${g['card--w-padding']}`}>
+                    <div >
                         <h1 className={g['h1']}>Register</h1>
                         <form onSubmit={handleSubmit} className={`${g['form-group']} ${g["form--full"]}`}>
                             <div >
