@@ -4,10 +4,10 @@ import { Navigate } from "react-router";
 // This function validates where a user is logged in, if they are they will be allowed to visit the component that gets passed in here
 const authRequired = (Component) => {
 
-    // Create/Store the component
+    // this is the component for create/store 
     const AuthenticatedComponent = (props) => {
 
-        // Check for JWT Tokwn
+        // this is to check for JWT Tokwn
         const token = localStorage.getItem("jwt-token");
 
         // If there is no token, use the Navigate component to redirect
