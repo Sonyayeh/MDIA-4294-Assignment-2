@@ -2,24 +2,24 @@ const jwt = require("jsonwebtoken");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Our new custom middle ware
+// this is the middleware that will authenticate the token and validate it
 const authenticateToken = (req, res, next) => {
 
-    // Pull the Authorization header out of the headers
+    // this pulls the Authorization header out of the headers
     const authHeader = req.headers["authorization"];
 
-    // Get the token from it
+    // then it will get the token from it
     const token = authHeader && authHeader.split(" ")[1];
 
-    // Send an error if no token
+    // it will send an error if no token
     if(!token) {
         return res.status(401).json({ message: "Access Denied" })
     }
 
-    // Verify the token using the secret
+    // and this line means that it will varify the token using the secret
     jwt.verify(token, JWT_SECRET, (err, userData) => {
 
-        // Error, token did not validate
+        // Error message, only appears when the token did not validate
         if(err) {
             return res.status(403).json({ message: "Invalid or expired token" })
         }

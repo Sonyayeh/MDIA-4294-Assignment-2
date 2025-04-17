@@ -4,7 +4,6 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
-    // this is the database name 
     database: 'MangaList',
     port: 8889
 });

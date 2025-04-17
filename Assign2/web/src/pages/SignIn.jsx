@@ -5,24 +5,25 @@ import bannerImage from '../assets/images/home-bg.jpg';
 
 function SignIn({ handleLogin }) {
     
-    // Set up state variables
+    // this is to set up state variables for the form data and error messages
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
-    const [error, setError] = useState(null); // State to store any errors
+    // State to store any errors
+    const [error, setError] = useState(null); 
 
-    // Used to redirect after login
+    // this is used to redirect after successful sign in
+    // ideally, users will be directed to all mangas page when signed in
     const navigate = useNavigate();
 
-    // Runs when the login form is submitted
+    // this runs when the login form is submitted
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Clear previous errors
         setError(null);
 
-        // Send login request to the backend
+        // this is to send the sign in request off to the users endpoint in the API with the form data from above
         fetch("http://localhost:3000/users/sign-in", {
             method: "POST", 
             headers: {
@@ -31,20 +32,21 @@ function SignIn({ handleLogin }) {
             body: JSON.stringify(formData)
         })
         .then(response => {
+            // this is to check if the response is ok, if not, it will throw an error and an error message
             if (!response.ok) {
                 throw new Error("Login failed. Please check your credentials.");
             }
             return response.json();
         })
         .then(returnedData => {
-            // The returned data sets the token via the key in the API, here we store it in local storage
+            // This is the returned data sets the token via the key in the API, here we store it in local storage
             localStorage.setItem("jwt-token", returnedData.jwt);
 
-            // Update authentication state and redirect
+            // this is the update authentication state and redirect
             handleLogin();
 
             // Redirect to the all-mangas page after successful login
-            navigate('/all-mangas'); // Make sure the path matches your route path
+            navigate('/all-mangas'); 
         })
         .catch(err => {
             // Catch any errors and set error state
@@ -53,6 +55,8 @@ function SignIn({ handleLogin }) {
     };
 
     return (
+        // this is the main container for the sign in page
+        // the user will not sign in if the information, like email and password, does not match with the API's database
         <main style={{ backgroundImage: `url(${bannerImage})` }} className={`${g['container']} ${g["full-width"]} ${g['banner']}`}>
             <div className={`${g['grid-container']} ${g["banner__content"]}`}>
                 <div className={g['col-12']}>
@@ -85,6 +89,7 @@ function SignIn({ handleLogin }) {
                                     }}
                                 />
                             </div>
+                            {/* this is basically the same thing as sign up, except this is sign in */}
                             <input type="submit" value="Sign In" className={`${g["button"]} ${g["success"]}`} />
                         </form>
                     </div>
