@@ -16,7 +16,7 @@ function SignUp() {
         confirmPassword: ""
     });
 
-    // Runs when the signup for is submitted
+    // Runs when the signup form is submitted
     const handleSubmit = (e) => {
         e.preventDefault();
         
@@ -34,11 +34,26 @@ function SignUp() {
             },
             body: JSON.stringify(formData)
         })
-        .then( response => response.json() )
-        .then(returnedJSON => {
-            navigate("/sign-in")
-        });
+        .then(async (response) => {
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Something went wrong!");
+            }
 
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                const data = await response.json();
+                console.log("User created:", data);
+            } else {
+                console.warn("No JSON response received.");
+            }
+
+            navigate("/sign-in");
+        })
+        .catch((error) => {
+            console.error("Signup error:", error.message);
+            alert("There was an issue signing up. Please try again.");
+        });
     };    
 
     return (
@@ -48,7 +63,7 @@ function SignUp() {
                     <div>
                         <h1 className={g['h1']}>Register</h1>
                         <form onSubmit={handleSubmit} className={`${g['form-group']} ${g["form--full"]}`}>
-                            <div >
+                            <div>
                                 <label htmlFor="email">Email</label>
                                 <input 
                                     type="email" 
@@ -56,12 +71,12 @@ function SignUp() {
                                     name="email"
                                     placeholder='Email'
                                     required
-                                    onChange={ (event) => {
-                                        setFormData({  ...formData, email: event.target.value });
+                                    onChange={(event) => {
+                                        setFormData({ ...formData, email: event.target.value });
                                     }}
                                 />
                             </div>
-                            <div >
+                            <div>
                                 <label htmlFor="password">Password</label>
                                 <input 
                                     type="password" 
@@ -69,30 +84,31 @@ function SignUp() {
                                     placeholder='Password'
                                     name="password" 
                                     required
-                                    onChange={ (event) => {
+                                    onChange={(event) => {
                                         setFormData({ ...formData, password: event.target.value });
-                                    } }
+                                    }}
                                 />
                             </div>
-                            <div >
+                            <div>
                                 <label htmlFor="confirm-password">Confirm Password</label>
                                 <input 
-                                    type="password" id="confirm-password" 
+                                    type="password" 
+                                    id="confirm-password" 
                                     placeholder='Retype Password'
                                     name="confirm-password" 
-                                    onChange={ (event) => {
-                                        setFormData( { ...formData, confirmPassword: event.target.value } );
-                                    } }
+                                    required
+                                    onChange={(event) => {
+                                        setFormData({ ...formData, confirmPassword: event.target.value });
+                                    }}
                                 />
                             </div>
-                            <input type="submit" value="Register" className={`${g["button"]} ${g["success"]} `} />
-
+                            <input type="submit" value="Register" className={`${g["button"]} ${g["success"]}`} />
                         </form>
                     </div>
                 </div>
             </div>
         </main>
-    )
+    );
 }
 
 export default SignUp;
